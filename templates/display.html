@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>File Display</title>
+	<h1>News Analyzer</h1>
+</head>
+<body>
+	{%for dic in results%}
+		<p><font size="5">{{dic['filename']}}</font></p>
+		<p>{{dic['frequency']}}</p>
+		{%for para in dic['content']%}
+			<p>{{para[0]}}</p>
+			<p>{{para[1]}}</p>
+		{%endfor%}
+	{%endfor%}
+	<div>
+		<form action="/" method="post">
+			<p><input type="submit" value="Go Back" ></p>
+		</form>
+	</div>
+	<span style='color: red;'></span>
+	<script type="text/javascript">
+	var key = /{{keyword}}/ig;
+	document.body.innerHTML = document.body.innerHTML.replace(key,"<span style='color: red;font-weight:bold'>$&</span>");
+	</script>
+</body>
+</html>

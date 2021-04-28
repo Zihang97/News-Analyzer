@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<div align="center">
+<head>
+	<meta charset="UTF-8">
+	<title>News Analyzer</title>
+	<h1>News Analyzer</h1>
+</head>
+<body>
+	<div>
+		<form action = "/uploader" method = "post" enctype = "multipart/form-data"  >
+		<p>File: <input type = "file" name = "file" /></p>
+		<p><input type = "submit" value = "Upload" /></p>
+		</form>
+	</div>
+
+	<div>
+		<form action="/file/file_update/" method="post">
+			<input type="submit" value="Update File" />
+		</form>
+		<form action="/file/file_delete/" method="post">
+			<input type="submit" value="Delete File" />
+		</form>
+	</div>
+
+	<div>
+		<form action="/file/file_query/" method="post" >
+			<p>KeyWord: <input type="text" name="keyword"></p>
+			<input value="Search Database" type="submit"><br><br>
+		</form>
+	</div>
+
+	<div>
+		<form action="/news">
+			<input value="News Search" type="submit">
+		</form>
+	</div>
+
+</body>
+</div>
+</html>
