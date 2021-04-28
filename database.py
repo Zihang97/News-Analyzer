@@ -3,7 +3,7 @@ from extract_pdf_data import *
 from nlp import *
 from pdfreader import *
 
-password = "150417jzh"
+password = "*************"
 
 def createtable(password):
 	db = pymysql.connect(host = "localhost", user = "root", password = password, database = "news_analyzer")
