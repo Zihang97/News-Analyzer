@@ -60,14 +60,6 @@ def display(name, filename):
 	file, content = GET(password, name, filename)
 	return render_template('display_file.html', name=name, file=file, content=content)
 
-# @app.route('/login',methods = ['POST', 'GET'])
-# def login():
-# 	if request.method == 'POST':
-# 		user = request.form['name']
-# 	else:
-# 		user = request.args.get('name')
-# 	return redirect(url_for('hello_world', name = user))
-
 @app.route('/uploader/<name>', methods = ['GET', 'POST'])
 def uploader(name):
 	if request.method == 'POST':
