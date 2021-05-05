@@ -3,66 +3,119 @@ from extract_pdf_data import *
 from nlp import *
 from pdfreader import *
 
-password = "*************"
+password = "root"
 
-def createtable(password):
+def createtable(username, password = password):
 	db = pymysql.connect(host = "localhost", user = "root", password = password, database = "news_analyzer")
 	 
 	cursor = db.cursor()
-	
-	cursor.execute('drop table if exists files')
 
-	sql = "CREATE TABLE files (author VARCHAR(40), create_time VARCHAR(40), modified_time VARCHAR(40), content TEXT, sentiment VARCHAR(10))"
-	 
+	tablename = 'file_' + username
+
+	sql = 'drop table if exists ' + tablename
 	cursor.execute(sql)
+
+	sql = 'CREATE TABLE ' + tablename + ' (filename VARCHAR(40), create_time VARCHAR(40), modified_time VARCHAR(40), content TEXT, sentiment VARCHAR(10))'
+	cursor.execute(sql)
+
+	db.commit()
 	 
 	db.close()
 
 
-def POST(password, fileaddr, filename):
+def POST(password, username, fileaddr, filename):
 	info_dict = extract_data(fileaddr)
 	content = parse(fileaddr)
+	tablename = 'file_' + username
 
 	db = pymysql.connect(host = "localhost", user = "root", password = password, database = "news_analyzer")
 	 
 	cursor = db.cursor()
 	
-	auth = filename
 	create_time = info_dict['create_time']
 	mod_time = info_dict['modified_time']
 	senti = sentiment_analysis(content)
 
-	sql = "insert into files (author, create_time, modified_time, content, sentiment) values(%s, %s, %s, %s, %s)"
-	cursor.execute(sql, (auth, create_time, mod_time, content, senti))
+	sql = 'insert into ' + tablename + ' (filename, create_time, modified_time, content, sentiment) values(%s, %s, %s, %s, %s)'
+	cursor.execute(sql, (filename, create_time, mod_time, content, senti))
 
 	db.commit()
 	
 	db.close()
 
 
-def GET(password, creator):
+def insertuser(username, word, password=password):
 	db = pymysql.connect(host = "localhost", user = "root", password = password, database = "news_analyzer")
 	 
 	cursor = db.cursor()
 
-	sql = "select * from files where author=%s"
-	cursor.execute(sql, (creator))
+	sql = 'insert into user (username, password) values(%s, %s)'
+	cursor.execute(sql, (username, word))
+
+	db.commit()
+	
+	db.close()
+
+
+def GET(password, username, filename):
+	db = pymysql.connect(host = "localhost", user = "root", password = password, database = "news_analyzer")
+	 
+	cursor = db.cursor()
+	tablename = 'file_' + username
+
+	sql = "select * from " + tablename + " where filename=%s"
+	cursor.execute(sql, (filename))
 	results = cursor.fetchone()
 	
-	creator = results[0]
+	filename = results[0]
 	content = results[3]
-	sentiment = results[-1]
 	 
 	db.close()
 
-	return [creator, content, sentiment]
+	return [filename, content]
 
-def search(password, keyword):
+def GETALL(password, username):
+	db = pymysql.connect(host = "localhost", user = "root", password = password, database = "news_analyzer")
+	 
+	cursor = db.cursor()
+	tablename = 'file_' + username
+
+	sql = "select * from " + tablename
+	cursor.execute(sql)
+	results = cursor.fetchall()
+	
+	filenames = []
+	for row in results:
+		filenames.append(row[0])
+	 
+	db.close()
+
+	return filenames
+
+def GETUSER(password=password):
 	db = pymysql.connect(host = "localhost", user = "root", password = password, database = "news_analyzer")
 	 
 	cursor = db.cursor()
 
-	sql = "select * from files"
+	sql = "select * from user"
+	cursor.execute(sql)
+	results = cursor.fetchall()
+	
+	users = {}
+	for row in results:
+		users[row[0]] = row[1]
+	 
+	db.close()
+
+	return users
+
+def search(password, username, keyword):
+	db = pymysql.connect(host = "localhost", user = "root", password = password, database = "news_analyzer")
+	 
+	cursor = db.cursor()
+	tablename = 'file_' + username
+
+	sql = "select * from " + tablename
 	cursor.execute(sql)
 	results = cursor.fetchall()
 	out = []
@@ -87,33 +140,36 @@ def search(password, keyword):
 	return out
 
 
-def PUT(password, filename, new_content):
+def PUT(password, username, filename, new_content):
 	db = pymysql.connect(host = "localhost", user = "root", password = password, database = "news_analyzer")
 	 
 	cursor = db.cursor()
+	tablename = 'file_' + username
 
-	sql = "update files set content=%s where author=%s"
+	sql = "update " + tablename + " set content=%s where filename=%s"
 
-	cursor.execute(sql, (new_content, creator))
+	cursor.execute(sql, (new_content, filename))
 	db.commit()
 
 
 	db.close()
 
 
-def DELETE(password, filename):
+def DELETE(password, username, filename):
 	db = pymysql.connect(host = "localhost", user = "root", password = password, database = "news_analyzer")
 	 
 	cursor = db.cursor()
+	tablename = 'file_' + username
 
-	sql = "delete from files where author=%s"
-	cursor.execute(sql, (creator))
+	sql = "delete from " + tablename + " where filename=%s"
+	cursor.execute(sql, (filename))
 
 	db.commit()
 	 
 	db.close()
 
 
-# createtable(password)
+# createtable(password, 'hhh')
 # POST(password, './File_buffer/Zoom.pdf')
+# print(GETUSER())
 # print(search(password, 'you'))
