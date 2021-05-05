@@ -106,22 +106,12 @@
                             <div class="row">
                                 <div class="form-container col-md-offset-4 col-xs-15 col-md-4">
                                     <!-- 定义login的方法为post以及login的网址在/login -->
-                                    <form action = "{{url_for('uploader', name=name)}}" method = "post" enctype = "multipart/form-data"  >
-		                            <p>File: <input type = "file" name = "file" /></p>
-                                    <p> <button type="submit" value='Upload' class="btn btn-block btn-cta-primary">Upload</button></p>
-                                    </form>
-                                        <form action="{{url_for('update', name=name, filename=filename)}}" method="post">
-                                        <button type="submit" value="Update File" class="btn btn-block btn-cta-primary">Update file</button>
+                                    {%for filename in filenames%}
+                                        <p>{{filename}}</p>
+                                        <form action="{{url_for('display', name=name, filename=filename)}}" method="post">
+                                            <button type="submit" value='display' class="btn btn-block btn-cta-primary">Display</button>
                                         </form>
-                                        <br>
-                                        <form action="{{url_for('delete', name=name)}}" method="post">
-                                            <p> <button type="submit" value='Delete File' class="btn btn-block btn-cta-primary">Delete file</button></p>
-		                                </form>
-
-                                        <form action="{{url_for('query', name=name)}}" method="post" >
-                                            <p>KeyWord: <input type="text" name="keyword"></p>
-                                            <p> <button type="submit" value="Search Database" class="btn btn-block btn-cta-primary">Search Database</button></p>
-                                        </form>
+                                    {%endfor%}
                                         <!--
 
 		                               <form action="{{url_for('news', name=name)}}">

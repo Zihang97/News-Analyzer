@@ -1,23 +1,83 @@
 <!DOCTYPE html>
-<html lang="en">
-<div align="center">
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
 <head>
-	<title>News Search</title>
-	<h1>News Analyzer</h1>
+    <title>news search</title>
+
+      <link rel="stylesheet" href="../static/plugins/bootstrap/css/bootstrap.min.css">
+    <!-- Plugins CSS -->
+    <link rel="stylesheet" href="../static/plugins/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" href="../static/plugins/flexslider/flexslider.css">
+    <!-- Theme CSS -->
+    <link id="theme-style" rel="stylesheet" href="../static/css/styles.css">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
 </head>
-<body>
-	<div>
-		<form action="/news/query" method="post" >
-			<p>KeyWord: <input type="text" name="news_keyword" ></p><br><br>
-			<p>Number of News to Query: <input type="text" name="page" ></p><br><br>
-			<input value="Search News" type="submit">
-		</form>
-	</div>
-	<div>
-		<form action="/">
-			<input value="Go Back" type="submit">
-		</form>
-	</div>
-</body>
-</html>
-</div>
+<!--34-44行设计login page上面的那个红色小标记-->
+<body class=" has-full-screen-bg">
+    <div class="upper-wrapper">
+        <!-- ******HEADER****** -->
+        <!--class=header标题控制居中-->
+        <header class="header">
+            <!--class=container貌似没什么用-->
+            <div class="container">
+                <!--h1指大标题-->
+                <h1 class="logo">
+                    <!-- 点左小红框可以回到首页 -->
+                     <a href="{{url_for('main', name=name)}}"><span class="logo-icon"></span><span class="text">NEWS ANALYZER</span></a>
+                </h1><!--//logo-->
+
+            </div><!--//container-->
+        </header><!--//header-->
+
+        <!-- ******Login Section****** -->
+        <section class="login-section access-section section">
+            <div class="container">
+                <div class="row">
+                    <!-- login框外面的白色方框的尺寸-->
+                    <div class="form-box col-md-offset-4 col-sm-offset-0 xs-offset-0 col-xs-3 col-md-4">
+                        <!-- login框外面的白色方框的内容即login什么什么的-->
+                        <div class="form-box-inner">
+                            <!-- 二级标题居中 -->
+                            <h2 class="title text-center">News Search</h2>
+                            <!-- login框的长度宽度 -->
+                            <div class="row">
+                                <div class="form-container col-xs-15 col-md-11">
+                                    <!-- 定义login的方法为post以及login的网址在/login -->
+                                    <form action="{{url_for('news_query', name=name)}}" method="post" >
+                                        <div class="form-group keyword">
+                                            <!-- 显示login框里的字 -->
+                                            <label class="sr-only" for="Keyword"></label>
+                                            <!-- id与上一行显示框里字对应，name用来抓取username栏的输入 formcontrol控制输入框的协调性 placeholder的内容是显示在输入框里的内容 -->
+                                            <input id="Keyword" name="news_keyword" class="form-control " type="text" placeholder="Keyword">
+                                        </div>
+                                        <div class="form-group page">
+                                            <!-- 显示login框里的字 -->
+                                            <label class="sr-only" for="page"></label>
+                                            <!-- id与上一行显示框里字对应，name用来抓取username栏的输入 formcontrol控制输入框的协调性 placeholder的内容是显示在输入框里的内容 -->
+                                            <input id="page" name="page" class="form-control " type="text" placeholder="Number of News to Query">
+                                        </div>
+                                        <button type="submit" value='Search News' class="btn btn-block btn-cta-primary">Search News</button>
+                                    </form>
+                                    <br>
+                                         <form action="{{url_for('main', name=name)}}" method="post">
+                                        <button type="submit" value='Go Back' class="btn btn-block btn-cta-primary">Go Back</button>
+
+                                </form>
+
+                                </div>
+
+                            </div><!--//row-->
+                        </div><!--//form-box-inner-->
+                    </div><!--//form-box-->
+                </div><!--//row-->
+            </div><!--//container-->
+        </section><!--//contact-section-->
+    </div><!--//upper-wrapper-->
+
+
+

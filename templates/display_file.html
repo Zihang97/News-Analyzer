@@ -3,21 +3,18 @@
 <!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
 <!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
 <head>
-    <title>update result</title>
+    <title>display file</title>
     <!-- Meta -->
 
     <!---<link href='http://fonts.googleapis.com/css?family=Roboto:400,400italic,500,500italic,700,700italic,900,900italic,300italic,300' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:400,700,300,100' rel='stylesheet' type='text/css'>--->
     <!-- Global CSS -->
-    <link rel="stylesheet" href="../static/plugins/bootstrap/css/bootstrap.min.css">
-
-
-
+    <link rel="stylesheet" href="../../../static/plugins/bootstrap/css/bootstrap.min.css">
     <!-- Plugins CSS -->
-    <link rel="stylesheet" href="../static/plugins/font-awesome/css/font-awesome.css">
-    <link rel="stylesheet" href="../static/plugins/flexslider/flexslider.css">
+    <link rel="stylesheet" href="../../../static/plugins/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" href="../../../static/plugins/flexslider/flexslider.css">
     <!-- Theme CSS -->
-   <link id="theme-style" rel="stylesheet" href="../static/css/styles.css">
+    <link id="theme-style" rel="stylesheet" href="../../../static/css/styles.css">
 
 
 
@@ -50,7 +47,7 @@
                         <li class="nav-item"><a href="{{url_for('main', name=name)}}">Home</a></li>
 
                         </li><!--//dropdown-->
-                        <li class="nav-item"><a href="{{url_for('profile', name=name)}}" >Profile</a></li>
+                        <li class="nav-item"><a href="{{url_for('profile', name=name, filename=filename)}}" >Profile</a></li>
                         <li class="nav-item"><a href="{{url_for('news', name=name, filename=filename)}}" >News Search</a></li>
                         <li class="nav-item nav-item-cta last"><a class="btn btn-cta btn-cta-secondary" href="{{url_for('index')}}">Sign out</a></li>
                     </ul><!--//nav-->
@@ -59,18 +56,8 @@
         </div><!--//container-->
     </header><!--//header-->
 
-    <div class="bg-slider-wrapper">
-        <ul class="slides">
-
-            <li>
-                <img src="../static/images/background/bg-header-2.jpg" alt="">
-            </li>
-            <li>
-                <img src="../static/images/background/bg-header-3.jpg" alt="">
-            </li>
-        </ul>
+    <div class="headline-bg">
     </div><!--//headline-bg-->
-
 
     <!--
      ******Video Section******
@@ -98,37 +85,19 @@
                             <!--<h2 class="title text-center">Display</h2>-->
 
                             <!-- login框的长度宽度 -->
-
-
-
-
+                            <div class="text-left">
+                               <font size="5">{{file}}</font>
+                                <br>
+	                            {{content}}
+                                </div>
                             <br>
                             <div class="row">
                                 <div class="form-container col-md-offset-4 col-xs-15 col-md-4">
                                     <!-- 定义login的方法为post以及login的网址在/login -->
-                                    <form action = "{{url_for('uploader', name=name)}}" method = "post" enctype = "multipart/form-data"  >
-		                            <p>File: <input type = "file" name = "file" /></p>
-                                    <p> <button type="submit" value='Upload' class="btn btn-block btn-cta-primary">Upload</button></p>
-                                    </form>
-                                        <form action="{{url_for('update', name=name, filename=filename)}}" method="post">
-                                        <button type="submit" value="Update File" class="btn btn-block btn-cta-primary">Update file</button>
-                                        </form>
-                                        <br>
-                                        <form action="{{url_for('delete', name=name)}}" method="post">
-                                            <p> <button type="submit" value='Delete File' class="btn btn-block btn-cta-primary">Delete file</button></p>
-		                                </form>
+                                         <form action="{{url_for('profile', name=name)}}" method="post">
+                                        <button type="submit" value='Go Back' class="btn btn-block btn-cta-primary">Go Back</button>
 
-                                        <form action="{{url_for('query', name=name)}}" method="post" >
-                                            <p>KeyWord: <input type="text" name="keyword"></p>
-                                            <p> <button type="submit" value="Search Database" class="btn btn-block btn-cta-primary">Search Database</button></p>
-                                        </form>
-                                        <!--
-
-		                               <form action="{{url_for('news', name=name)}}">
-                                           <p> <button type="submit" value="News Search" class="btn btn-block btn-cta-primary">News Search</button></p>
-		                                 </form>
-                                       -->
-
+                                </form>
                                 </div>
 
                             </div><!--//row-->
@@ -142,14 +111,14 @@
 
 
     <!-- Javascript -->
-    <script type="text/javascript" src="../static/plugins/jquery-1.12.3.min.js"></script>
-    <script type="text/javascript" src="../static/plugins/bootstrap/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../static/plugins/bootstrap-hover-dropdown.min.js"></script>
-    <script type="text/javascript" src="../static/plugins/back-to-top.js"></script>
-    <script type="text/javascript" src="../static/plugins/jquery-placeholder/jquery.placeholder.js"></script>
-    <script type="text/javascript" src="../static/plugins/FitVids/jquery.fitvids.js"></script>
-    <script type="text/javascript" src="../static/plugins/flexslider/jquery.flexslider-min.js"></script>
-    <script type="text/javascript" src="../static/js/main.js"></script>
+    <script type="text/javascript" src="../../../static/plugins/jquery-1.12.3.min.js"></script>
+    <script type="text/javascript" src="../../../static/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../../static/plugins/bootstrap-hover-dropdown.min.js"></script>
+    <script type="text/javascript" src="../../../static/plugins/back-to-top.js"></script>
+    <script type="text/javascript" src="../../../static/plugins/jquery-placeholder/jquery.placeholder.js"></script>
+    <script type="text/javascript" src="../../../static/plugins/FitVids/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="../../../static/plugins/flexslider/jquery.flexslider-min.js"></script>
+    <script type="text/javascript" src="../../../static/js/main.js"></script>
 
 
 </body>

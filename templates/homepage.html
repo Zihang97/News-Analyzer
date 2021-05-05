@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>newsproducter</title>
+</head>
+<body>
+如何判断一段文字中是否有自己想要的那几个字，如果有就把那几个字变成红色（在html中）
+比如有body中有这么一串文字“驾驶的后视镜的华盛顿”，想要判断里面是否有“驾驶”这两个字，如果有就把这两个字变成红色
+<span style='color: red;'></span>
+<script type="text/javascript">
+document.body.innerHTML = document.body.innerHTML.replace(/驾驶/ig,"<span style='color: red;'>$&</span>");
+</script>
+<a href="/regist">Go to register page</a></br>
+<a href="/login">Go to login page</a></br>
+</body>
+</html>
