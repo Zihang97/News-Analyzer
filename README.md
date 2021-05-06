@@ -13,6 +13,38 @@ Functions we have improved:
 
 5. security logout
 
+## User Story
+
+I, the investigator, need to login to a secure service to upload my content
+
+I, the investigator, have a number of PDF files that I want to upload to my account.
+
+I, the investigator, want to search in all files I have uploaded.
+
+I, the investigator, want to discover content from the WEB to enhance story
+
+I, the investigator, want to know find the common keywords in subset of my documents.
+
+I, the investigator, want to know all names, locations, institutions and address in my 
+documents.
+
+I, the investigator, want to know any relation between names, locations and institutions.
+
+I, the investigator, want to find relationship between keywords in the ingested and discovered 
+content.
+
+I, the investigator, want to find sentiment (positive, negative or neutral) of different parts of the content
+
+I, the investigator, want to modify the sentiment calculated by the system in case I disagree.
+
+I, the investigator, want to search based on keywords and sentiments
+
+I, the investigator, want the system to calculate similarities or correlation between key wor 
+
+Provide snapshots and summary of documents
+
+I, the investigator, want to upload different types of files (CSV, DOC, etc.)
+
 ## Website Structure
 ### Mainpage
 <p>
