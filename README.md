@@ -6,7 +6,7 @@ Functions we have improved based on project 2:
 
 1. search all the files and show keyword in different paragraphs with sentiment analysis (count the total number)
 
-2. signup,login, authentication
+2. signup, login, authentication
 
 3. make the web nice looking
 
