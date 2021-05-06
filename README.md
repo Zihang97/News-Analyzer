@@ -1,6 +1,7 @@
 # News_Analyzer_app
 
 The introduction video can be found [here](./presentation.mp4)
+
 Functions we have improved:
 
 1. search all the files and show keyword in different paragraphs with sentiment analysis (count the total number)
@@ -9,7 +10,7 @@ Functions we have improved:
 
 3. make the web nice looking
 
-4.display all uploaded files user has uploaded. 
+4. display all uploaded files user has uploaded. 
 
 5. security logout
 
