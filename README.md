@@ -2,7 +2,7 @@
 
 The introduction video can be found [here](./presentation.mp4)
 
-Functions we have improved:
+Functions we have improved based on project 2:
 
 1. search all the files and show keyword in different paragraphs with sentiment analysis (count the total number)
 
