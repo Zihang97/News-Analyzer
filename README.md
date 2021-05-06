@@ -40,9 +40,7 @@ I, the investigator, want to modify the sentiment calculated by the system in ca
 
 I, the investigator, want to search based on keywords and sentiments
 
-I, the investigator, want the system to calculate similarities or correlation between key wor 
-
-Provide snapshots and summary of documents
+I, the investigator, want the system to calculate similarities or correlation between key words 
 
 I, the investigator, want to upload different types of files (CSV, DOC, etc.)
 
